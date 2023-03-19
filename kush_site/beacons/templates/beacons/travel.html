@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Form with Purple Background</title>
+    <style>
+    /* Set the background color of the page */
+body {
+  background-color: #3f51b5;
+}
+
+/* Add a container for the circles */
+.circle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+/* Add styles for the circles */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 6s infinite;
+}
+
+/* Add animations for the circles */
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Add styles for the circles */
+.circle1 {
+  width: 100px;
+  height: 100px;
+  background-color: #f44336;
+  opacity: 0.8;
+}
+
+.circle2 {
+  width: 80px;
+  height: 80px;
+  background-color: #9c27b0;
+  opacity: 0.6;
+}
+
+.circle3 {
+  width: 60px;
+  height: 60px;
+  background-color: #2196f3;
+  opacity: 0.4;
+}
+
+      body {
+        background-color: purple;
+      }
+
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        width: 100%;
+      }
+
+      /* Random CSS to make the page attractive */
+      h1 {
+        font-size: 36px;
+        color: white;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      #background-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .shape {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: move 20s ease-in-out infinite alternate;
+      }
+
+      .shape:nth-child(1) {
+        width: 200px;
+        height: 200px;
+        top: 50px;
+        left: 50px;
+      }
+
+      .shape:nth-child(2) {
+        width: 100px;
+        height: 100px;
+        top: 200px;
+        left: 150px;
+      }
+
+      .shape:nth-child(3) {
+        width: 150px;
+        height: 150px;
+        top: 350px;
+        left: 250px;
+      }
+
+      @keyframes move {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(10px, 10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get All your travel Documents in one place</h1>
+    <h2> For a hassle free travel</h2>
+
+    {% if render_qr %}
+    <button onclick = "window.open( '{{url}}' )">
+      Download
+    </button>
+    {% endif %}
+    <form method="post" id ="form1" enctype="multipart/form-data" action="/travel_doc_qr_code">
+      {% csrf_token %}
+      <div>
+        <label for="gov_id">Government ID:</label>
+        <input type="file" id="gov_id" name="gov_id">
+      </div>
+      <div>
+        <label for="flight_ticket">Location:</label>
+        <input type="file" id="flight_ticket" name="flight_ticket">
+      </div>
+      <div>
+        <label for="other">Other:</label>
+        <input type="url" id="other" name="other">
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    {% if render_qr %}
+    <img src=" {{url}} " alt="Dynamic QR Code" width="500" height="600">
+    {% endif %}
+
+
+    <div id="background-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <script>
+
+
+            $(document).ready(function() {
+          $('#form11111').submit(function(event) {
+            // Prevent the form from submitting normally
+            event.preventDefault();
+
+            // Get the form data
+            var formData = $(this).serialize();
+
+            // Send the AJAX request
+            $.ajax({
+              url: '/travel_doc_qr_code',  // Replace with your URL
+              type: 'POST',
+              data: formData,
+              success: function(data) {
+                // Handle the success response
+                console.log("done")
+                $('body').empty().html(data);
+              },
+              error: function(xhr) {
+                // Handle the error response
+                console.log(xhr.responseText);
+              }
+            });
+          });
+        });
+
+
+</script>
+  </body>
+</html>
