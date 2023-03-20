@@ -62,8 +62,8 @@ def generate_static_qr_code(request):
             d = res.json()
             url = d.get("urls")["png"]
             print("url", url)
-            context = {"url": url}
-            return render(request, "static_qr.html", context=context)
+            context = {"url": url, "render_qr": True}
+            return render(request, "static.html", context=context)
 
         else:
             return JsonResponse({'status': 'Error Generating QR Code'}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -164,12 +164,13 @@ def upload_file(request, file):
 
     response = requests.request("PUT", url, headers=headers, data=payload)
     print("sent iupload request")
-    print("response", response.json(), response.status_code)
+    # print("response", response.json(), response.status_code)
     if response.ok:
         print("responded here")
-        file_url = response.json()['content']['html_url']
+        file_url = response.json()['content']['download_url']
         return file_url
     else:
+        print(response.json())
         return
 
 
@@ -180,8 +181,9 @@ def travel_documents_qr_code(request):
     flight_ticket = request.FILES["flight_ticket"]
     url1 = upload_file(request, gov_id)
     url2 = upload_file(request, flight_ticket)
-
+    print(url1, url2)
     response = dynamic_qr.travel_pdf_qr_code(url1, url2)
+    print(response.json())
     if response.status_code == 201:
         print("api request succesful")
         res = download_dynamic_qr_code(response)
@@ -220,3 +222,53 @@ def v_card_qr_code(request):
         context = {"url": url, "render_qr": True}
         return render(request, "dynamic.html", context=context)
     return JsonResponse({'status': 'Error Generating QR Code'}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+
+def sms_qr_code(request):
+    print("sms_qr_code")
+    data = request.POST
+    phone_number = data.get("phone_number")
+    if "+" not in phone_number:
+        phone_number = "+91 " + phone_number
+    print(phone_number)
+    msg_body = data.get("msg_body")
+    print(phone_number, msg_body)
+    response = dynamic_qr.sms_qr_code(phone_number=phone_number, msg_body=msg_body)
+    print(response.json())
+    if response.status_code == 201:
+        resp = download_dynamic_qr_code(response)
+        print("qr code generated")
+        if resp.status_code == 200:
+            print("qr code downloaded")
+            d = resp.json()
+            url = d.get("urls")["jpeg"]
+            context = {"url": url, "render_qr": True}
+            return render(request, "dynamic.html", context=context)
+        else:
+            return JsonResponse({'status': 'Error Downloading QR Code'}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+    else:
+        return JsonResponse({'status': 'Error Generating QR Code'}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+
+def email_qr_code(request):
+    print("email qr code")
+    data = request.POST
+
+    email_address = data.get("email_address")
+    subject = data.get("subject")
+    body = data.get("body")
+
+    response = dynamic_qr.email_qr_code(email_address, subject=subject, body=body)
+    if response.status_code == 201:
+
+        resp = download_dynamic_qr_code(response)
+        if resp.status_code == 200:
+            print("downloaded succesfully")
+            d = resp.json()
+            url = d.get("urls")["jpeg"]
+            context = {"url": url, "render_qr": True}
+            return render(request, "dynamic.html", context=context)
+        else:
+            return JsonResponse({'status': 'Error Downloading QR Code'}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+    else:
+        return JsonResponse({'status': 'Error Generating QR Code'}, status=HTTPStatus.INTERNAL_SERVER_ERROR)

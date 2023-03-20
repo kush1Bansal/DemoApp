@@ -6,69 +6,77 @@
     <style>
     /* Set the background color of the page */
 body {
-  background-color: #3f51b5;
-}
-
-/* Add a container for the circles */
-.circle-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
-
-/* Add styles for the circles */
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  animation: float 6s infinite;
-}
-
-/* Add animations for the circles */
-@keyframes float {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(100%, 100%);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-/* Add styles for the circles */
-.circle1 {
-  width: 100px;
-  height: 100px;
-  background-color: #f44336;
-  opacity: 0.8;
-}
-
-.circle2 {
-  width: 80px;
-  height: 80px;
-  background-color: #9c27b0;
-  opacity: 0.6;
-}
-
-.circle3 {
-  width: 60px;
-  height: 60px;
-  background-color: #2196f3;
-  opacity: 0.4;
-}
-
-      body {
-        background-color: purple;
+        background-color: #3f51b5;
+        font-family: Arial, sans-serif;
       }
 
+      /* Add a container for the circles */
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+
+      /* Add styles for the circles */
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        animation: float 6s infinite;
+      }
+
+      /* Add animations for the circles */
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(100%, 100%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      /* Add styles for the circles */
+      .circle1 {
+        width: 100px;
+        height: 100px;
+        background-color: #f44336;
+        opacity: 0.8;
+      }
+
+      .circle2 {
+        width: 80px;
+        height: 80px;
+        background-color: #9c27b0;
+        opacity: 0.6;
+      }
+
+      .circle3 {
+        width: 60px;
+        height: 60px;
+        background-color: #2196f3;
+        opacity: 0.4;
+      }
+
+      /* Form styles */
       form {
         background-color: white;
-        padding: 20px;
+        padding: 30px;
         border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      form label {
+        font-size: 18px;
+        color: #555;
+        display: block;
+        margin-bottom: 8px;
       }
 
       input[type="text"],
@@ -76,86 +84,111 @@ body {
       input[type="password"],
       textarea {
         display: block;
-        margin-bottom: 10px;
-        padding: 5px;
+        margin-bottom: 20px;
+        padding: 10px;
         border-radius: 5px;
         border: none;
         width: 100%;
+        font-size: 16px;
+        color: #333;
+        background-color: #f5f5f5;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
-      /* Random CSS to make the page attractive */
-      h1 {
-        font-size: 36px;
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="password"]:focus,
+      textarea:focus {
+        outline: none;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
+          0 0 8px rgba(0, 0, 0, 0.1);
+      }
+
+      button[type="submit"] {
+        background-color: #3f51b5;
         color: white;
-        text-align: center;
-        margin-top: 50px;
-      }
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out
 
-      #background-shapes {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
 
-      .shape {
-        position: absolute;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        animation: move 20s ease-in-out infinite alternate;
-      }
 
-      .shape:nth-child(1) {
-        width: 200px;
-        height: 200px;
-        top: 50px;
-        left: 50px;
-      }
+}
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  display: none;
+}
 
-      .shape:nth-child(2) {
-        width: 100px;
-        height: 100px;
-        top: 200px;
-        left: 150px;
-      }
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
 
-      .shape:nth-child(3) {
-        width: 150px;
-        height: 150px;
-        top: 350px;
-        left: 250px;
-      }
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
-      @keyframes move {
-        from {
-          transform: translate(0, 0);
-        }
-        to {
-          transform: translate(10px, 10px);
-        }
-      }
+#qr_image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
     </style>
   </head>
   <body>
-    <h1>Static QR Code</h1>
+    <h1>Create Static QR Codes</h1>
+     {% if render_qr %}
+    <button onclick = "window.open( '{{url}}' )">
+      Download
+    </button>
+    {% endif %}
     <form method="post" id ="form1">
       {% csrf_token %}
       <div>
         <label for="org_id">Organization ID:</label>
-        <input type="text" id="org_id" name="org_id">
-      </div>
-      <div>
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location">
+        <input type="text" id="org_id" name="org_id" value="281387" readonly>
       </div>
       <div>
         <label for="custom_url">Custom URL:</label>
         <input type="url" id="custom_url" name="custom_url" required>
       </div>
+        <br>
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit">Go!</button>
       </div>
     </form>
+    <div id="loader">
+  <div class="spinner"></div>
+</div>
+
+        <div id="qr_image">
+    {% if render_qr %}
+    <img src=" {{url}} " alt="Dynamic QR Code" width="500" height="600">
+    {% endif %}
+    </div>
 
 
     <div id="background-shapes">
@@ -174,7 +207,7 @@ body {
 
             // Get the form data
             var formData = $(this).serialize();
-
+            $('#loader').show();
             // Send the AJAX request
             $.ajax({
               url: '/static_qr_code',  // Replace with your URL
@@ -183,10 +216,12 @@ body {
               success: function(data) {
                 // Handle the success response
                 console.log("done")
+                $('#loader').hide();
                 $('body').empty().html(data);
               },
               error: function(xhr) {
                 // Handle the error response
+                $('#loader').hide();
                 console.log(xhr.responseText);
               }
             });

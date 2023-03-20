@@ -136,15 +136,105 @@ def travel_pdf_qr_code(url1,url2):
                         "url": url1,
                         "name": "Government ID"
                     },
-                    [
+
                         {
                             "url": url2,
                             "name": "boarding_pass"
                         }
-                    ]
+
 
                 ],
                 "uploaded": True
+            }
+        },
+        "location_enabled": False,
+        "attributes": {
+            "color": "#2595ff",
+            "colorDark": "#2595ff",
+            "margin": 80,
+            "isVCard": False,
+            "frameText": "BEACONSTAC",
+            "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
+            "logoScale": 0.1992,
+            "frameColor": "#2595FF",
+            "frameStyle": "banner-bottom",
+            "logoMargin": 10,
+            "dataPattern": "square",
+            "eyeBallShape": "circle",
+            "gradientType": "none",
+            "eyeFrameColor": "#2595FF",
+            "eyeFrameShape": "rounded"
+        }
+    })
+    headers = {
+        'Authorization': 'Token 441f5312d9208cd9602f7bb410a1a283164e8a53',
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    return response
+
+
+def sms_qr_code(phone_number, msg_body):
+    import requests
+    import json
+
+    url = "https://beaconstacqa.mobstac.com/api/2.0/qrcodes/?organization=11181"
+
+    payload = json.dumps({
+        "name": "SMS",
+        "organization": 11181,
+        "qr_type": 2,
+        "campaign": {
+            "content_type": 16,
+            "phone_sms": {
+                "phone": phone_number,
+                "body": msg_body
+            }
+        },
+        "location_enabled": False,
+        "attributes": {
+            "color": "#2595ff",
+            "colorDark": "#2595ff",
+            "margin": 80,
+            "isVCard": False,
+            "frameText": "BEACONSTAC",
+            "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
+            "logoScale": 0.1992,
+            "frameColor": "#2595FF",
+            "frameStyle": "banner-bottom",
+            "logoMargin": 10,
+            "dataPattern": "square",
+            "eyeBallShape": "circle",
+            "gradientType": "none",
+            "eyeFrameColor": "#2595FF",
+            "eyeFrameShape": "rounded"
+        }
+    })
+    headers = {
+        'Authorization': 'Token 441f5312d9208cd9602f7bb410a1a283164e8a53',
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    return response
+
+def email_qr_code(email_address, subject, body):
+
+    url = "https://beaconstacqa.mobstac.com/api/2.0/qrcodes/?organization=11181"
+
+    payload = json.dumps({
+        "name": "Email",
+        "organization": 11181,
+        "qr_type": 2,
+        "campaign": {
+            "content_type": 17,
+            "email": {
+                "email": email_address,
+                "subject": subject,
+                "body": body
             }
         },
         "location_enabled": False,

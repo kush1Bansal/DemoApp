@@ -27,6 +27,7 @@ urlpatterns = [
     path("dynamic_qr_code", views.generate_dynamic_qr_code, name="dynamic_qr_code"),
     path("travel", views.open_travel_landing_page, name="travel_landing_page"),
     path("travel_doc_qr_code", views.travel_documents_qr_code, name="travel_documents_qr_code"),
-    path("v_card_qr_code", views.v_card_qr_code, name="v_card_qr_code")
-
+    path("v_card_qr_code", views.v_card_qr_code, name="v_card_qr_code"),
+    path("sms_qr_code", views.sms_qr_code, name="sms_qr_code"),
+    path("email_qr_code", views.email_qr_code, name="email_qr_code")
 ]
