@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="699f410a-96b8-4e88-8e52-4e84be7d00ce" name="Changes" comment="add demo project">
+    <list default="true" id="699f410a-96b8-4e88-8e52-4e84be7d00ce" name="Changes" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kush_site/beacons/api_collections/dynamic_qr.py" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/beacons/api_collections/dynamic_qr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/dynamic.html" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/dynamic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/static.html" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/static.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/travel.html" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/beacons/templates/beacons/travel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kush_site/beacons/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/beacons/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kush_site/kush_site/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kush_site/kush_site/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,12 +75,20 @@
       <option name="project" value="LOCAL" />
       <updated>1679247725240</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changes">
+      <created>1679304242238</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679304242238</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add demo project" />
-    <option name="LAST_COMMIT_MESSAGE" value="add demo project" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
